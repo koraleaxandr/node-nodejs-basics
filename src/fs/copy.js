@@ -8,7 +8,7 @@ const copyDir = async (originFolder, targetFolder) => {
     try {
         await fs.mkdir(targetFolder, { recursive: false })
     } catch (error) {
-        console.log('FS operation failed 11');
+        console.log('FS operation failed');
         return;
     }  
         
@@ -20,15 +20,14 @@ const copyDir = async (originFolder, targetFolder) => {
                 try {
                     await fs.copyFile(path.join(originFolder, file.name), path.join(targetFolder, file.name))
                 } catch (error) {
-                    console.log(error);
-                    console.log('FS operation failed 2');
+                    console.log('FS operation failed');
                 }                
             } else if (file.isDirectory) {                 
                 await copyDir(path.join(originFolder, file.name), path.join(targetFolder, file.name))
             }
         }
       } catch (err) {
-        console.log('FS operation failed 3');
+        console.log('FS operation failed');
       }
     }
 
