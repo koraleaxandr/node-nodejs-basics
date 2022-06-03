@@ -16,7 +16,6 @@ export const rename = async () => {
     try {
         await fs.rename(`${__dirname}/files/wrongFilename.txt`, `${__dirname}/files/properFilename.md`)
     } catch (error) {
-        console.log(error);
         console.log('FS operation failed');
     }
 };
