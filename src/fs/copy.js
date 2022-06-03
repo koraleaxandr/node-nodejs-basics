@@ -4,21 +4,43 @@ import {
     fileURLToPath
 } from 'url';
 
+const copyDir = async (originFolder, targetFolder) => { 
+    try {
+        await fs.mkdir(targetFolder, { recursive: false })
+    } catch (error) {
+        console.log('FS operation failed 11');
+        return;
+    }  
+        
+   
+    try {
+        const files =  await fs.readdir(originFolder, {withFileTypes : true});
+        for (const file of files) {
+            if (file.isFile()) {
+                try {
+                    await fs.copyFile(path.join(originFolder, file.name), path.join(targetFolder, file.name))
+                } catch (error) {
+                    console.log(error);
+                    console.log('FS operation failed 2');
+                }                
+            } else if (file.isDirectory) {                 
+                await copyDir(path.join(originFolder, file.name), path.join(targetFolder, file.name))
+            }
+        }
+      } catch (err) {
+        console.log('FS operation failed 3');
+      }
+    }
+
+
 export const copy = async () => {
+    
     const __filename = fileURLToPath(
         import.meta.url);
     const __dirname = path.dirname(__filename);
-    const originFolderPath = path.join(__dirname, 'files');    
-    console.log(originFolderPath);
+    const originFolderPath = path.join(__dirname, 'files');
     const targetFolderPath = path.join(__dirname, 'files_copy');
-    try {
-        const files = await fs.readdir(originFolderPath, {withFileTypes : true});
-        console.log(files);
-        for (const file of files)
-          console.log(file);
-      } catch (err) {
-        console.log('FS operation failed');
-      }
+    copyDir(originFolderPath, targetFolderPath);
 };
 
 copy();
