@@ -1,7 +1,8 @@
 export const parseEnv = () => {
-    for (let key in process.env) {
-        console.log(`RSS_${key} = ${key.value}`);        
-       };    
+    const keys = Object.entries(process.env);
+    keys.forEach((element) => {
+        console.log(`RSS_${element[0]} = ${element[1]}`); 
+       });    
 };
 
 parseEnv();
