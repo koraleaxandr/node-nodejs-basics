@@ -1,6 +1,6 @@
 import * as path from'path';
 import { release, version } from 'os';
-import { createServer: createServerHttp } from 'http';
+import { createServer as createServerHttp } from 'http';
 import { fileURLToPath } from 'url';
 import { readFile } from 'fs/promises';
 

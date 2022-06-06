@@ -17,7 +17,6 @@ export const decompress = async () => {
     const input = fs.createReadStream(inputFilePath);
 const output = fs.createWriteStream(outputFilePath, {decompress:'utf-8'});
 const unzip = zlib.createGunzip();
-//input.pipe(unzip).pipe(output)
 pipeline(
     input,
     unzip,
