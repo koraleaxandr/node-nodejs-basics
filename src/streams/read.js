@@ -1,4 +1,4 @@
-import * as fs from 'fs/promises';
+import * as fs from 'fs';
 import * as path from 'path';
 import { stdout } from 'process';
 import {
@@ -10,12 +10,8 @@ export const read = async () => {
         import.meta.url);
     const __dirname = path.dirname(__filename);
     const inputFilePath = `${__dirname}/files/fileToRead.txt`;
-    const input = await fs.readFile(inputFilePath, err => {
-        if (err) {
-            console.log('zip operation failed');
-        }
-    });
-    stdout.write(input);
+    const input = fs.createReadStream(inputFilePath);
+    input.pipe(stdout);
 };
 
 read();
