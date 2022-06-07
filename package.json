@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "args": "node src/cli/args arg1 arg2 arg3 arg4"
+    "args": "node src/cli/args arg1 arg2 arg3 arg4",
+    "env": "RSS_NAME=Alexandr RSS_LastName=Karatkevich node src/cli/env.js"
   },
   "repository": {
     "type": "git",

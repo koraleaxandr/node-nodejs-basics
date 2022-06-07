@@ -6,7 +6,7 @@ export const parseArgs = () => {
     args.forEach((element, index) => {
         if (index % 2 === 0) {
             let endOfString = index >= args.length-2 ? '':', ';
-            argsString+= `RSS_${element} = ${args[index +1] + endOfString}`;
+            argsString+= `RSS_${element} is ${args[index +1] + endOfString}`;
         } 
     });
     console.log(argsString);
@@ -14,4 +14,4 @@ export const parseArgs = () => {
 
 parseArgs();
 
-//for testing - npm run src/cli/args 11 22 33 44 55 ...and so on
+//for testing - node src/cli/args 11 22 33 44 55 66 ...and so on
